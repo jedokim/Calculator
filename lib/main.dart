@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'dart:developer';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(MyApp());
@@ -8,6 +12,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    log('on init');
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -26,7 +31,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Calculator'),
     );
   }
 }
@@ -60,6 +65,21 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
+      log('incrementCounter');
+      log(_counter.toString());
+      print('print counter');
+      print(_counter);
+      var foo = {};
+      foo[0] = 'test';
+
+      print(foo);
+
+      var test = http
+          .get('https://jsonplaceholder.typicode.com/albums/1')
+          .then((value) => {print(value)})
+          .then((res) => {print(res)});
+
+      print(test);
     });
   }
 
